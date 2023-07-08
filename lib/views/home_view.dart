@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class HomeView extends StatefulWidget {
   @override
@@ -6,6 +7,31 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  String responseData = '';
+
+  void fetchData() async {
+    final response =
+        await http.get(Uri.parse('http://192.168.1.27:8000/pokemon/list'));
+    print('2 ++++++++++++++++++++++++++++');
+    if (response.statusCode == 200) {
+      setState(() {
+        responseData = response.body;
+        print(responseData);
+      });
+    } else {
+      // Handle error
+      print('Error: ${response.statusCode}');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print('1 ++++++++++++++++++++++++++++');
+    fetchData();
+    print('3 ++++++++++++++++++++++++++++');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +50,7 @@ class _HomeViewState extends State<HomeView> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           print('++++++++++++++++++++++++++++');
+          Navigator.pushNamed(context, '/pokemon/detail');
         },
         tooltip: 'Agregar Registro',
         child: Icon(Icons.add), //,
