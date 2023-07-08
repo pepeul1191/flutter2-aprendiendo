@@ -22,7 +22,6 @@ class _HomeViewState extends State<HomeView> {
         pokemons = (jsonData as List)
             .map((pokemonJson) => Pokemon.fromJson(pokemonJson))
             .toList();
-        print(pokemons[0].name);
       });
     } else {
       // Handle error
@@ -46,13 +45,33 @@ class _HomeViewState extends State<HomeView> {
         centerTitle: true,
         backgroundColor: Colors.deepPurple[300],
       ),
-      body: Center(
+      body: /*Center(
           child: Text(responseData,
               style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'UbuntuFont',
-                  letterSpacing: 2.0))),
+                  letterSpacing: 2.0)))*/
+          GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3, // Number of columns in the grid
+                mainAxisSpacing: 8.0, // Spacing between rows
+                crossAxisSpacing: 8.0, // Spacing between columns
+              ),
+              itemCount: pokemons.length,
+              itemBuilder: (BuildContext context, int index) {
+                return GridTile(
+                  child: Container(
+                    color: Colors.white,
+                    child: Center(
+                      child: Image.network(
+                        pokemons[index].imageUrl,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                );
+              }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           print('++++++++++++++++++++++++++++');
