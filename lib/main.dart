@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'dart:ffi';
 
-void main() => runApp(MaterialApp(
-      home: Text('hola mundor?'),
-    ));
+import 'package:flutter/material.dart';
+import 'package:learn2/views/home_view.dart';
+
+void main() => runApp(MaterialApp(home: HomeView()));
