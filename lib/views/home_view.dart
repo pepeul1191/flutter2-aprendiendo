@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:learn2/entities/pokemon.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -7,16 +10,19 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  String responseData = '';
+  String responseData = 'Hola pepis???';
+  List<Pokemon> pokemons = [];
 
   void fetchData() async {
     final response =
         await http.get(Uri.parse('http://192.168.1.27:8000/pokemon/list'));
-    print('2 ++++++++++++++++++++++++++++');
     if (response.statusCode == 200) {
       setState(() {
-        responseData = response.body;
-        print(responseData);
+        final jsonData = json.decode(response.body);
+        pokemons = (jsonData as List)
+            .map((pokemonJson) => Pokemon.fromJson(pokemonJson))
+            .toList();
+        print(pokemons[0].name);
       });
     } else {
       // Handle error
@@ -41,7 +47,7 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: Colors.deepPurple[300],
       ),
       body: Center(
-          child: Text('Hola pepis???',
+          child: Text(responseData,
               style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
