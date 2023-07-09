@@ -32,9 +32,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    print('1 ++++++++++++++++++++++++++++');
     fetchData();
-    print('3 ++++++++++++++++++++++++++++');
   }
 
   @override
@@ -60,21 +58,27 @@ class _HomeViewState extends State<HomeView> {
               ),
               itemCount: pokemons.length,
               itemBuilder: (BuildContext context, int index) {
-                return GridTile(
-                  child: Container(
-                    color: Colors.white,
-                    child: Center(
-                      child: Image.network(
-                        pokemons[index].imageUrl,
-                        fit: BoxFit.cover,
+                return GestureDetector(
+                    onTap: () {
+                      // Handle the tap event.
+                      print('Grid tile ${pokemons[index].id} tapped');
+                      Navigator.pushNamed(context, '/pokemon/detail',
+                          arguments: {'id': pokemons[index].id});
+                    },
+                    child: GridTile(
+                      child: Container(
+                        color: Colors.white,
+                        child: Center(
+                          child: Image.network(
+                            pokemons[index].imageUrl,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                );
+                    ));
               }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          print('++++++++++++++++++++++++++++');
           Navigator.pushNamed(context, '/pokemon/detail');
         },
         tooltip: 'Agregar Registro',
