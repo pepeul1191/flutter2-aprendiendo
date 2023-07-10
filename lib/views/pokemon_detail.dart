@@ -88,17 +88,51 @@ class _PokemonDetailViewState extends State<PokemonDetailView> {
             padding: EdgeInsets.all(32.0),
             child: Column(
               children: <Widget>[
-                Padding(
-                    padding: EdgeInsets.only(
-                        bottom: 16.0), // Adjust the padding value as needed
-                    child: pokemon != null
-                        ? Center(
-                            child: Image.network(
-                              pokemon!.imageUrl,
-                              fit: BoxFit.cover,
+                Stack(
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.only(
+                            bottom: 16.0), // Adjust the padding value as needed
+                        child: pokemon != null
+                            ? Center(
+                                child: Image.network(
+                                  pokemon!.imageUrl,
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                            : CircularProgressIndicator()), // Replace with your image path
+                    Positioned(
+                        bottom:
+                            16.0, // Adjust the position of the icon as needed
+                        right: 24.0,
+                        child: GestureDetector(
+                          onTap: () {
+                            // Handle the click event
+                            print('Positioned widget clicked!');
+                          },
+                          child: Container(
+                            width:
+                                48.0, // Adjust the size of the container as needed
+                            height: 48.0,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.deepPurple[
+                                  300], // Adjust the color of the circle as needed
                             ),
-                          )
-                        : CircularProgressIndicator()),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.transparent,
+                              child: Icon(
+                                Icons.mode_edit_outline_outlined,
+                                color: Colors
+                                    .white, // Adjust the color of the icon as needed
+                                size:
+                                    26.0, // Adjust the size of the icon as needed
+                              ),
+                            ),
+                          ),
+                        )),
+                  ],
+                ),
                 TextField(
                   controller: _nameEditingController,
                   decoration: InputDecoration(
