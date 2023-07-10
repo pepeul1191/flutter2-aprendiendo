@@ -1,10 +1,10 @@
 class Pokemon {
-  final int id;
-  final String name;
-  final String imageUrl;
-  final int number;
-  final double weight;
-  final double height;
+  int id;
+  String name;
+  String imageUrl;
+  int number;
+  double weight;
+  double height;
 
   Pokemon(
       {required this.id,
