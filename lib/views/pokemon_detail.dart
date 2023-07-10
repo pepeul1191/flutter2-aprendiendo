@@ -42,12 +42,26 @@ class _PokemonDetailViewState extends State<PokemonDetailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Detalle de Pokemón $pokemonId'),
-        centerTitle: true,
-        backgroundColor: Colors.deepPurple[300],
-      ),
-      body: Center(child: Text('Hola pepis???')),
-    );
+        appBar: AppBar(
+          title: Text('Detalle de Pokemón $pokemonId'),
+          centerTitle: true,
+          backgroundColor: Colors.deepPurple[300],
+        ),
+        body: Column(
+          children: <Widget>[
+            Padding(
+                padding: EdgeInsets.only(
+                    top: 16.0), // Adjust the padding value as needed
+                child: pokemon != null
+                    ? Center(
+                        child: Image.network(
+                          pokemon!.imageUrl,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : CircularProgressIndicator()),
+            Center(child: Text('Hola pepisR???')),
+          ],
+        ));
   }
 }
