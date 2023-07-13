@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:learn2/entities/pokemon.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PokemonDetailView extends StatefulWidget {
   @override
@@ -76,6 +77,16 @@ class _PokemonDetailViewState extends State<PokemonDetailView> {
     }
   }
 
+  void openFileManager() async {
+    final url =
+        'https://www.example.com'; // Replace with your desired URL or app scheme
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,6 +120,7 @@ class _PokemonDetailViewState extends State<PokemonDetailView> {
                           onTap: () {
                             // Handle the click event
                             print('Positioned widget clicked!');
+                            openFileManager();
                           },
                           child: Container(
                             width:

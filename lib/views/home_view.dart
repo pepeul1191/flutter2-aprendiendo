@@ -39,7 +39,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My first layoutR'),
+        title: Text('My first layout'),
         centerTitle: true,
         backgroundColor: Colors.deepPurple[300],
       ),
