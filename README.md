@@ -17,6 +17,8 @@ samples, guidance on mobile development, and a full API reference.
 
 Generar splash:
 
+    $ flutter clean
+    $ flutter pub et
     $ flutter pub run flutter_native_splash:create
 
 
@@ -24,4 +26,12 @@ Generar splash:
 
     $ flutter run
 
-https://fonts.google.com
+---
+
+Fuentes:
+
++ https://fonts.google.com
++ https://www.youtube.com/watch?v=ioWob9KnWk4
++ https://pub.dev/packages/flutter_native_splash
++ https://www.youtube.com/watch?v=eMHbgIgJyUQ
++ https://pub.dev/packages/flutter_native_splash
